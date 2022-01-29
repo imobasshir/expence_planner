@@ -1,6 +1,7 @@
 import 'package:expence_planner/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,6 +56,9 @@ class MyHomePage extends StatelessWidget {
           const Card(
             child: Text(
               'CHART',
+              style: TextStyle(
+                color: Colors.indigoAccent,
+              ),
               textScaleFactor: 3.0,
             ),
           ),
@@ -64,17 +68,42 @@ class MyHomePage extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 25,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.indigoAccent,
+                        width: 1.8,
+                      ),
+                      borderRadius: BorderRadius.circular(4.6),
+                    ),
+                    padding: const EdgeInsets.all(10.0),
                     child: Text(
-                      tx.amount.toString(),
+                      '\$${tx.amount}',
+                      style: const TextStyle(
+                        color: Colors.indigoAccent,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         tx.title,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          // color: Colors.grey,
+                        ),
                       ),
                       Text(
-                        tx.date.toString(),
+                        DateFormat.yMMMEd().add_jm().format(tx.date),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
                       )
                     ],
                   ),
